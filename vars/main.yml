@@ -1,0 +1,2 @@
+---
+terraform_url: https://releases.hashicorp.com/terraform/{{ terraform_version }}

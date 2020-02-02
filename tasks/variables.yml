@@ -1,0 +1,21 @@
+---
+- name: Set system architecture (arm)
+  set_fact:
+    terraform_arch: arm
+  when: "'arm' in ansible_architecture"
+
+- name: Set system architecture (i386)
+  set_fact:
+    terraform_arch: "368"
+  when: ansible_architecture == "i386"
+
+- name: Set system architecture (x86_64)
+  set_fact:
+    terraform_arch: amd64
+  when: ansible_architecture == "x86_64"
+
+- name: Set SHA256SUMS checksum ({{ terraform_url + '/terraform_' + terraform_version + '_SHA256SUMS' }})
+  set_fact:
+    terraform_sha256_sum: "{{ item.split( )[0] }}"
+  when: terraform_verify_checksum and ansible_system | lower in item and terraform_arch in item
+  loop: "{{ lookup('url', terraform_url + '/terraform_' + terraform_version + '_SHA256SUMS', wantlist=true) }}"

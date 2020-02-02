@@ -1,0 +1,41 @@
+---
+galaxy_info:
+  role_name: terraform
+  author: Gabriel Suarez
+  description: Installs Hashicorp Terraform.
+  license: MIT
+  min_ansible_version: 2.8
+  platforms:
+    - name: EL
+      versions:
+        - 6
+        - 7
+        - 8
+    - name: Amazon
+      versions:
+        - all
+    - name: Amazon Linux 2
+      versions:
+        - any
+    - name: Debian
+      versions:
+        - jessie
+        - stretch
+        - buster
+    - name: Ubuntu
+      versions:
+        - xenial
+        - bionic
+        - focal
+  galaxy_tags:
+    - amazon
+    - centos
+    - cloud
+    - debian
+    - hashicorp
+    - infrastructure
+    - redhat
+    - terraform
+    - ubuntu
+
+dependencies: []

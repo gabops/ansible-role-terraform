@@ -1,0 +1,14 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: Install several versions of Terraform
+      include_role:
+        name: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') | basename }}"
+      vars:
+        terraform_version: "{{ item }}"
+        terraform_bin_name: "terraform-{{ item }}"
+      loop:
+        - '0.13.2'
+        - '0.13.1'
+        - '0.13.0'

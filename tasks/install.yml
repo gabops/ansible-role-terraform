@@ -1,0 +1,28 @@
+---
+- name: Create directory
+  file:
+    path: "/tmp/terraform-{{ terraform_version }}"
+    state: directory
+
+- name: Download package
+  get_url:
+    url: "{{ terraform_url }}/terraform_{{ terraform_version }}_{{ ansible_system | lower }}_{{ terraform_arch }}.zip"
+    dest: "/tmp/terraform-{{ terraform_version }}"
+    force: "{{ terraform_force_download }}"
+    checksum: "{{ 'sha256:' + terraform_sha256_sum if terraform_verify_checksum else omit }}"
+  register: terraform_download
+
+- name: Unarchive package
+  unarchive:
+    remote_src: true
+    src: "{{ terraform_download.dest }}"
+    dest: "{{ terraform_download.dest | dirname }}"
+
+- name: Copy binary to installation path
+  copy:
+    src: "{{ terraform_download.dest | dirname }}/terraform"
+    dest: "{{ terraform_installation_path }}/{{ terraform_bin_name }}"
+    mode: "{{ terraform_bin_mode }}"
+    group: "{{ terraform_bin_group }}"
+    owner: "{{ terraform_bin_owner }}"
+    remote_src: true

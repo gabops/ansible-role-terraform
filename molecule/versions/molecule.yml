@@ -1,0 +1,17 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+platforms:
+  - name: terraform-molecule-instance-01
+    image: ${TEST_DISTRO:-centos:7}
+    dockerfile: Dockerfile.j2
+provisioner:
+  name: ansible
+verifier:
+  name: testinfra
+lint: |
+  set -e
+  yamllint .
+  flake8

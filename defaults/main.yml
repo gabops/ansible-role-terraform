@@ -1,0 +1,16 @@
+---
+terraform_version: 0.13.2
+
+terraform_verify_checksum: true
+
+terraform_installation_path: /usr/local/bin
+
+terraform_force_download: false
+
+terraform_bin_name: terraform
+
+terraform_bin_mode: 0755
+
+terraform_bin_owner: root
+
+terraform_bin_group: root
