@@ -2,7 +2,7 @@
 - name: Set system architecture (arm)
   set_fact:
     terraform_arch: arm
-  when: "'arm' in ansible_architecture"
+  when: "'arm' in ansible_architecture or ansible_architecture in ['aarch64']"
 
 - name: Set system architecture (i386)
   set_fact:
