@@ -8,7 +8,7 @@ Installs Hashicorp Terraform.
 Requirements
 ------------
 
-None.
+'unzip' needs to be installed on the target system.
 
 Role Variables
 --------------
