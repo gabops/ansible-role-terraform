@@ -15,12 +15,10 @@ jobs:
       max-parallel: 4
       matrix:
         test_distro:
-          - centos:6
           - centos:7
           - centos:8
           - amazonlinux:1
           - amazonlinux:2
-          - debian:8
           - debian:9
           - debian:10
           - ubuntu:16.04
